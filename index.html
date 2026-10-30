@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--
+    "base href" is filled in by tool/build_web.ps1 (--base-href). When the app
+    is hosted in a folder such as https://name.github.io/pigtrade/ it must be
+    "/pigtrade/" (starts and ends with a slash). All other paths in this file
+    are relative, so they follow it.
+  -->
+  <base href="/pig-trade/">
+
+  <meta charset="UTF-8">
+  <!-- Zoom stays allowed (accessibility): no user-scalable=no. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Offline pig inventory and acquisition tracker.">
+  <meta name="theme-color" content="#006D77">
+
+  <!-- iPhone: "Add to Home Screen" makes it open like an app -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="PigTrade">
+  <!-- "default" keeps the status bar above the app instead of on top of it -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="manifest" href="manifest.json">
+
+  <title>PigTrade</title>
+
+  <style>
+    body { margin: 0; background: #ffffff; }
+    @media (prefers-color-scheme: dark) { body { background: #121212; } }
+    /* Shown until the app has started. */
+    #loading {
+      position: fixed; inset: 0; display: flex; align-items: center;
+      justify-content: center; font: 20px Roboto, Arial, sans-serif;
+      color: #006D77;
+    }
+    @media (prefers-color-scheme: dark) { #loading { color: #7fd3dc; } }
+  </style>
+</head>
+<body>
+  <div id="loading">Loading PigTrade…</div>
+  <noscript>
+    PigTrade needs JavaScript. Please turn JavaScript on in your browser
+    settings and reload this page.
+  </noscript>
+  <script>
+    // Remove the splash text as soon as the app has drawn its first frame.
+    window.addEventListener('flutter-first-frame', function () {
+      var el = document.getElementById('loading');
+      if (el) el.remove();
+    });
+
+    // Offline support: keep a copy of the app in the browser (see
+    // pigtrade_sw.js). The path is relative, so it follows the base href.
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('pigtrade_sw.js').catch(function (e) {
+          console.warn('PigTrade offline copy not available:', e);
+        });
+      });
+    }
+  </script>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>
