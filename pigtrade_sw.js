@@ -15,7 +15,7 @@
 // (If you open this file straight from web/, the list is empty and the worker
 // still caches files as they are used.)
 
-const VERSION = '9a729f6b83b2';
+const VERSION = 'cb3323442f24';
 const PRECACHE = ["./","assets/AssetManifest.bin","assets/AssetManifest.bin.json","assets/assets/fonts/roboto-bold.ttf","assets/assets/fonts/roboto-medium.ttf","assets/assets/fonts/roboto-regular.ttf","assets/FontManifest.json","assets/fonts/MaterialIcons-Regular.otf","assets/NOTICES","assets/packages/cupertino_icons/assets/CupertinoIcons.ttf","assets/shaders/ink_sparkle.frag","assets/shaders/stretch_effect.frag","canvaskit/canvaskit.js","canvaskit/canvaskit.wasm","canvaskit/chromium/canvaskit.js","canvaskit/chromium/canvaskit.wasm","drift_worker.js","favicon.png","flutter.js","flutter_bootstrap.js","icons/apple-touch-icon.png","icons/Icon-192.png","icons/Icon-512.png","icons/Icon-maskable-192.png","icons/Icon-maskable-512.png","index.html","main.dart.js","manifest.json","sqlite3.wasm"];
 
 const CACHE_NAME = 'pigtrade-' + VERSION;
